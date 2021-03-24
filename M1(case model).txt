@@ -1,0 +1,99 @@
+MODULE main
+VAR
+	state:{s0,s1,s2,s3,s4,s5,s6,s7,s8};
+	page-Blank:boolean;
+	page-MainPage:boolean;
+	page-LoginPage:boolean;
+	page-StudentView:boolean;
+	page-News:boolean;
+	link-MainPage:boolean;
+	link-Grade:boolean;
+	tri-MainPage:boolean;
+	src-News:boolean;
+	src-LoginPage:boolean;
+	tri-News:boolean;
+	tri-LoginPage:boolean;
+	call-LoginCheck:boolean;
+	tri-LoginCheck:boolean;
+ASSIGN
+	init(state):=s0;
+	init(page-Blank):=1;
+	init(link-MainPage):=1;
+	init(tri-MainPage):=0;
+	init(page-MainPage):=0;
+	init(src-News):=0;
+	init(src-LoginPage):=0;
+	init(tri-News):=0;
+	init(page-News):=0;
+	init(tri-LoginPage):=0;
+	init(page-LoginPage):=0;
+	init(call-LoginCheck):=0;
+	init(tri-LoginCheck):=0;
+	init(page-StudentView):=0;
+	init(link-Grade):=0;
+	next(state):= case
+		state=s0:s1;
+		state=s1:s2;
+		state=s2:{s3,s5};
+		state=s3:s4;
+		state=s5:s6;
+		state=s6:s7;
+		state=s7:{s6,s8};
+		1:state;
+	esac;
+	next(page-Blank):= case
+		state=s0:1;
+		1:0;
+	esac;
+	next(link-MainPage) := case
+		state=s0:1;
+		1:0;
+	esac;
+	next(tri-MainPage) := case
+		next(state)=s1:1;
+		1:0;
+	esac;
+	next(page-MainPage) := case
+		next(state)=s2:1;
+		1:0;
+	esac;
+	next(src-News) := case
+		next(state)=s2:1;
+		1:0;
+	esac;
+	next(tri-LoginPage) := case
+		next(state)=s2:1;
+		1:0;
+	esac;
+	next(tri-News) := case
+		next(state)=s3:1;
+		1:0;
+	esac;
+	next(page-News) := case
+		next(state)=s4:1;
+		1:0;
+	esac;
+	next(tri-LoginPage) := case
+		next(state)=s5:1;
+		1:0;
+	esac;
+	next(page-LoginPage) := case
+		next(state)=s6:1;
+		1:0;
+	esac;
+	next(call-LoginCheck) := case
+		next(state)=s6:1;
+		1:0;
+	esac;
+	next(tri-LoginCheck) := case
+		next(state)=s7:1;
+		1:0;
+	esac;
+	next(page-StudentView) := case
+		next(state)=s8:1;
+		1:0;
+	esac;
+	next(link-Grade) := case
+		next(state)=s8:1;
+		1:0;
+	esac;
